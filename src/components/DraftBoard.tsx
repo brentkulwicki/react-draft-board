@@ -16,9 +16,7 @@ let roundFormat = {
   kori: "",
 };
 const getData = async () => {
-  const response = await fetch(
-    "https://v1.nocodeapi.com/brentkwebdev/google_sheets/wTGAYtxxwUpeErdz?tabId=Sheet1"
-  );
+  const response = await fetch(`${process.env.NO_CODE_API_URL}`);
   return response.json();
 };
 
@@ -225,7 +223,8 @@ export const DraftBoard = () => {
         console.log("re-render?");
         setData(setTableData(someData.data));
       });
-    }, 15000);
+      // @ts-ignore
+    }, `${process.env.REFRESH_TIME}`);
   });
   return (
     <div>
